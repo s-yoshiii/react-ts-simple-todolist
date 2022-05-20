@@ -18,7 +18,20 @@ function App() {
       id: todos.length,
       checked: false,
     };
+    if (inputValue === "") {
+      return;
+    }
     setTodos([newTodo, ...todos]);
+    setInputValue("");
+  };
+  const handleEdit = (id: number, inputValue: string) => {
+    const newTodo = todos.map((todo) => {
+      if (todo.id === id) {
+        todo.inputValue = inputValue;
+      }
+      return todo;
+    });
+    setTodos(newTodo);
   };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500 ...">
@@ -29,9 +42,22 @@ function App() {
             type="text"
             className="form-input rounded-md focus:bg-green-50 transition ease-in duration-200"
             onChange={(e) => handleChange(e)}
+            value={inputValue}
           />
           <input type="submit" value="作成" className="form-input" />
         </form>
+        <ul>
+          {todos.map((todo) => (
+            <li key={todo.id}>
+              <input
+                className="form-input rounded-md focus:bg-green-50 transition ease-in duration-200"
+                type="text"
+                value={todo.inputValue}
+                onChange={(e) => handleEdit(todo.id, e.target.value)}
+              />
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
