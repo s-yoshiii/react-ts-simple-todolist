@@ -11,8 +11,8 @@ function App() {
     handleDelete,
   } = useTodoOperations();
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500 ...">
-      <div className="container px-4 md:px-12">
+    <div className="flex justify-center min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500 ...">
+      <div className="container max-w-md p-4 md:p-12">
         <h1 className="text-3xl font-bold text-white mb-4">Simple TodoList</h1>
         <form onSubmit={(e) => handleSubmit(e)}>
           <input
