@@ -1,5 +1,4 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-
 type Todo = {
   inputValue: string;
   id: number;
@@ -33,6 +32,19 @@ function App() {
     });
     setTodos(newTodo);
   };
+  const handleCheck = (id: number, checked: boolean) => {
+    const newTodo = todos.map((todo) => {
+      if (todo.id === id) {
+        todo.checked = !checked;
+      }
+      return todo;
+    });
+    setTodos(newTodo);
+  };
+  const handleDelete = (id: number) => {
+    const newTodo = todos.filter((todo) => todo.id !== id);
+    setTodos(newTodo);
+  };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500 ...">
       <div className="container px-4 md:px-12">
@@ -54,7 +66,15 @@ function App() {
                 type="text"
                 value={todo.inputValue}
                 onChange={(e) => handleEdit(todo.id, e.target.value)}
+                disabled={todo.checked}
               />
+              <input
+                type="checkbox"
+                onChange={(e) => handleCheck(todo.id, todo.checked)}
+              />
+              <button type="button" onClick={(e) => handleDelete(todo.id)}>
+                Delete
+              </button>
             </li>
           ))}
         </ul>
