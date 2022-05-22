@@ -15,13 +15,20 @@ function App() {
       <div className="container max-w-md p-4 md:p-12">
         <h1 className="text-3xl font-bold text-white mb-4">Simple TodoList</h1>
         <form onSubmit={(e) => handleSubmit(e)}>
-          <input
-            type="text"
-            className="form-input rounded-md focus:bg-green-50 transition ease-in duration-200"
-            onChange={(e) => handleChange(e)}
-            value={inputValue}
-          />
-          <input type="submit" value="作成" className="form-input" />
+          <div className="flex justify-start mb-4">
+            <input
+              type="text"
+              className="form-input rounded-md focus:bg-green-50 transition ease-in duration-200 mr-1"
+              onChange={(e) => handleChange(e)}
+              value={inputValue}
+            />
+            <button
+              type="submit"
+              className="rounded-md bg-blue-900 text-white px-4 py-2 tracking-wide"
+            >
+              Add
+            </button>
+          </div>
         </form>
         <ul>
           {todos.map((todo) => (
@@ -35,9 +42,14 @@ function App() {
               />
               <input
                 type="checkbox"
+                className="form-checkbox"
                 onChange={(e) => handleCheck(todo.id, todo.checked)}
               />
-              <button type="button" onClick={(e) => handleDelete(todo.id)}>
+              <button
+                type="button"
+                className="rounded-md bg-blue-900 text-white px-4 py-2 tracking-wide"
+                onClick={(e) => handleDelete(todo.id)}
+              >
                 Delete
               </button>
             </li>
