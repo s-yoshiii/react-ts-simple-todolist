@@ -11,7 +11,7 @@ function App() {
     handleDelete,
   } = useTodoOperations();
   return (
-    <div className="flex justify-center min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500 ...">
+    <div className="flex justify-center min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500">
       <div className="container max-w-md p-4 md:p-12">
         <h1 className="text-3xl font-bold text-white mb-4">Simple TodoList</h1>
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -40,11 +40,13 @@ function App() {
                 onChange={(e) => handleEdit(todo.id, e.target.value)}
                 disabled={todo.checked}
               />
-              <input
-                type="checkbox"
-                className="form-checkbox"
-                onChange={(e) => handleCheck(todo.id, todo.checked)}
-              />
+              <div className="before:content-[''] before:block before:w-6 before:h-6 before:border-orange-400 before:bg-orange-400 before:border relative">
+                <input
+                  type="checkbox"
+                  className="form-checkbox absolute top-0 left-0 opacity-0"
+                  onChange={(e) => handleCheck(todo.id, todo.checked)}
+                />
+              </div>
               <button
                 type="button"
                 className="rounded-md bg-blue-900 text-white px-4 py-2 tracking-wide"
